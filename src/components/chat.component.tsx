@@ -38,7 +38,7 @@ const AIChatComponent = () => {
 
   return (
     <div className={css(styles.container)}>
-      <div style={{border: '0px solid black', }}>
+      {/* <div style={{border: '0px solid black', }}>
         <Input 
           placeholder={t('askMeAnything')} 
           className={css(styles.input)}
@@ -58,11 +58,10 @@ const AIChatComponent = () => {
           onClick={handleVoiceInputToggle}
           loading={listening}
         >
-          {/* {listening ? '⏹️' : '🎙️'} */}
         </Button>
         <p className={css(styles.p)}>Transcript: {transcript}</p>
         <p className={css(styles.p)}>Input Text: {inputText}</p>
-      </div>
+      </div> */}
       <ChatBoxes />
     </div>
   );
