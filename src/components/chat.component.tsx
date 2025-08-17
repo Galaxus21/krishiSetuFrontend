@@ -4,43 +4,23 @@ import { useTranslation } from "react-i18next";
 import { useSpeechToText } from "../hooks/useSpeechRecognition";
 import { useState, useEffect } from "react";
 import { AudioOutlined } from "@ant-design/icons";
+import { useLocation } from "../hooks/useLocation";
+import ChatBoxes from "./chatSubComponents/sub.component";
 
 const AIChatComponent = () => {
 
   const { t } = useTranslation();
+  useLocation();
 
   const { 
     transcript,
     listening, 
     startListening, 
     stopListening, 
-    // resetTranscript,
   } = useSpeechToText();
 
   const [inputText, setInputText] = useState("");
-
-  // const [_location, setLocation] = useState({ latitude:0, longitude: 0});
-
-  // useEffect(() => {
-  //   if ("geolocation" in navigator) {
-  //       navigator.geolocation.getCurrentPosition(
-  //           (position) => {
-  //               setLocation({
-  //                   latitude: position.coords.latitude,
-  //                   longitude: position.coords.longitude,
-  //               });
-  //               console.log(`Latitude: ${position.coords.latitude},Longitude ${position.coords.longitude}`);
-  //           },
-  //           (err) => {
-  //               console.warn(`Err Occured: ${err.message}`);
-  //           },
-  //           { enableHighAccuracy: true, timeout: 20000, maximumAge: 10000 } // Optional options
-  //       );
-  //   } else {
-  //       console.warn("Geolocation is not supported by your browser.");
-  //   }
-  // }, []);
-
+  
   const handleVoiceInputToggle = () => {
     if (listening) {
       stopListening();
@@ -83,6 +63,7 @@ const AIChatComponent = () => {
         <p className={css(styles.p)}>Transcript: {transcript}</p>
         <p className={css(styles.p)}>Input Text: {inputText}</p>
       </div>
+      <ChatBoxes />
     </div>
   );
 };

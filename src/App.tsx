@@ -1,4 +1,3 @@
-import './App.css'
 import HeroPage from './scenes/HeroPage.scenes'
 import Header from './components/header.component'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'

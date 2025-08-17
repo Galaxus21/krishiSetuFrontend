@@ -4,24 +4,25 @@ import { Dropdown } from 'antd';
 import { Button } from 'antd'; // Import Button from antd
 import { useTranslation } from 'react-i18next';
 import type { MenuProps } from 'antd';
+import { useLanguage } from '../hooks/useLanguage';
+import type { Languages } from '../store/languageSlice';
 
 
-
-
-const langMenuItems = [
+const langMenuItems:{key: Languages, label: string}[] = [
   {key: 'en', label: 'English'},
   {key: 'hi', label: 'हिंदी'},
   {key: 'pn', label: 'ਪੰਜਾਬੀ'},
   {key: 'mr', label: 'मराठी'},
   {key: 'te', label: 'తెలుగు'},
-  {key: 'kn', label: 'ಕನ್ನಡ'},
+  {key: 'kn', label: 'ಕನ್ನಡ'}
 ]
 
 const Header = () => {
-  const { i18n, t } = useTranslation();
+  const { t } = useTranslation();
+  const { changeLanguage } = useLanguage();
 
   const handleLanguageChange: MenuProps['onClick'] = ({ key }) => {
-    i18n.changeLanguage(key);
+    changeLanguage(key as Languages);
   };
 
   return (
@@ -51,7 +52,9 @@ const styles = StyleSheet.create({
     background: 'white',
     top: "0px",
     zIndex: 100,
-    padding: '1rem',
+    padding: '2rem',
+    borderRadius:'50px',
+    border:'none'
   },
   searchContainer: {},
   logoContainer: {

@@ -2,9 +2,7 @@
   "Welcome": "Welcome",
   "Home": "Home",
   "language": "Language",
-  "heroPageHeading": "Welcome to KrishiSetu Demo",
-  "heroPageParagraph": "Explore the features of KrishiSetu without registration. Get real-time, localized advice on crop care, irrigation, pest management, government schemes, and market prices.",
-  "heroPageButton": "Start Demo",
 
-  "askMeAnything": "Ask me Anything !"
+  "askMeAnything": "Ask me Anything !",
+  "mandi": "Mandi"
 }
