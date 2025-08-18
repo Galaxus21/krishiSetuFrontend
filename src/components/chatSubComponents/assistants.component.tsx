@@ -5,6 +5,7 @@ import { AudioOutlined, UploadOutlined } from "@ant-design/icons";
 import { Button, Input } from "antd";
 import { Assistant, type LocationData } from "../../utils/services/assistant";
 import { useLocation } from "../../hooks/useLocation";
+import { useTranslation } from "react-i18next";
 
 
 
@@ -28,10 +29,11 @@ const QuestionIcon = () => (
   </svg>
 );
 // --- Component for Advisory-based Chat (General Query) ---
-const GeneralAdviceChatBox = ({ title, icon, placeholder, inputPlaceholder }:{title:string, icon: React.JSX.Element, placeholder:string, inputPlaceholder:string}) => {
+const GeneralAdviceChatBox = ({ title, icon, inputPlaceholder }:{title:string, icon: React.JSX.Element, inputPlaceholder:string}) => {
+  const {t} = useTranslation();
   const { transcript, listening, startListening, stopListening, resetTranscript } = useSpeechToText();
   const [inputText, setInputText] = useState("");
-  const [messages, setMessages] = useState([{ sender: 'assistant', text: placeholder }]);
+  const [messages, setMessages] = useState([{ sender: 'assistant', text: t("generalQueryDis0")+t("generalQueryDis1")+t("generalQueryDis2")+t("generalQueryDis3")+t("generalQueryDis4") }]);
   const [isLoading, setIsLoading] = useState(false);
   const { location: geo } = useLocation();
 
@@ -102,10 +104,11 @@ const GeneralAdviceChatBox = ({ title, icon, placeholder, inputPlaceholder }:{ti
 
 
 // --- DEDICATED Component for Disease Detection (handles file uploads) ---
-const DiseaseDetectorChatBox = ({ title, icon, placeholder, inputPlaceholder }: {title:string, icon: React.JSX.Element, placeholder:string, inputPlaceholder:string}) => {
+const DiseaseDetectorChatBox = ({ title, icon, inputPlaceholder }: {title:string, icon: React.JSX.Element, inputPlaceholder:string}) => {
+    const {t} = useTranslation();
     const { transcript, listening, startListening, stopListening, resetTranscript } = useSpeechToText();
     const [inputText, setInputText] = useState("");
-    const [messages, setMessages] = useState([{ sender: 'assistant', text: placeholder }]);
+    const [messages, setMessages] = useState([{ sender: 'assistant', text: t("detectDiseaseDis0")+t("detectDiseaseDis1")+t("detectDiseaseDis2")+t("detectDiseaseDis3")+t("detectDiseaseDis4")+t("detectDiseaseDis5")+t("detectDiseaseDis6") }]);
     const [isLoading, setIsLoading] = useState(false);
     const [selectedFile, setSelectedFile] = useState<File | null>(null);
     const fileInputRef = useRef<HTMLInputElement>(null);
@@ -243,8 +246,8 @@ const ChatInput = ({ inputText, setInputText, handleSend, isLoading, listening, 
 
 
 // --- Final Exported Components ---
-export const DiseaseDetector = () => <DiseaseDetectorChatBox title="Disease Detector" icon={<BugIcon />} placeholder="Upload a photo of the plant and describe the symptoms." inputPlaceholder="Type symptoms here..." />;
-export const GeneralAdvice = () => <GeneralAdviceChatBox title="Ask Me Anything" icon={<QuestionIcon />} placeholder="Ask about weather, market prices, or farming techniques." inputPlaceholder="Type your question..." />;
+export const DiseaseDetector = () => <DiseaseDetectorChatBox title="Disease Detector" icon={<BugIcon />} inputPlaceholder="Type symptoms here..." />;
+export const GeneralAdvice = () => <GeneralAdviceChatBox title="Ask Me Anything" icon={<QuestionIcon />} inputPlaceholder="Type your question..." />;
 
 
 // --- Inline Styles ---
