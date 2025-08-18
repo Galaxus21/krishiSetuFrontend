@@ -89,7 +89,7 @@ const Mandi = () => {
             </div>
             <div className={css(styles.settingItem)}>
               <span className={css(styles.settingLabel)}>Commodity:</span>
-              <span className={css(styles.settingValue)}><input name='commodity' value={farmerState.commodity} onChange={handleStateChange} /> (Grade<input value={farmerState.grade} name='grade' onChange={handleStateChange} />)</span>
+              <span className={css(styles.settingValue)}><input name='commodity' value={farmerState.commodity} onChange={handleStateChange} /> <br /> (Grade<input value={farmerState.grade} name='grade' onChange={handleStateChange} />)</span>
             </div>
             <div className={css(styles.settingItem)}>
               <span className={css(styles.settingLabel)}>Minimum Price:</span>
@@ -125,48 +125,45 @@ const Mandi = () => {
           </div>
         </div>
       </div>
-      <div className={css(styles.agentDashboard)} style={{padding:'10px'}}>
-          <span>This is just for a Demo so you can test for only limited values of 'Commodity' and 'Grade'</span>
-          <span>Values that will result in Successful Matches
-            <span>
-              Commodity: Basmati Rice, Grade: A
+      <div className={css(styles.agentDashboard)} style={{padding:'1rem'}}>
+        <div className={css(styles.note)}>
+            <strong>Note:</strong> This is just for a demo, so you can only test for the limited values of 'Commodity' and 'Grade' listed below.
+        </div>
 
-              Commodity: Lokwan Wheat, Grade: A
+        <h3>Values that will result in Successful Matches</h3>
+        <ul>
+            <li><strong>Commodity:</strong> Basmati Rice, <strong>Grade:</strong> A</li>
+            <li><strong>Commodity:</strong> Lokwan Wheat, <strong>Grade:</strong> A</li>
+            <li><strong>Commodity:</strong> Wheat, <strong>Grade:</strong> A</li>
+            <li><strong>Commodity:</strong> Turmeric, <strong>Grade:</strong> A</li>
+            <li><strong>Commodity:</strong> Jute, <strong>Grade:</strong> A</li>
+            <li><strong>Commodity:</strong> Chickpeas, <strong>Grade:</strong> A</li>
+            <li><strong>Commodity:</strong> Coffee Beans, <strong>Grade:</strong> A</li>
+            <li><strong>Commodity:</strong> Cotton, <strong>Grade:</strong> B</li>
+        </ul>
 
-              Commodity: Wheat, Grade: A
+        <hr />
 
-              Commodity: Turmeric, Grade: A
+        <h3>For a "Similar Match"</h3>
+        <ul>
+            <li><strong>Commodity:</strong> Wheat, <strong>Grade:</strong> A</li>
+        </ul>
+        
+        <hr />
 
-              Commodity: Jute, Grade: A
+        <h3>For a "No Match" Scenario</h3>
 
-              Commodity: Chickpeas, Grade: A
+        <p className={css(styles.scenarioSubtitle)}>1. A correct commodity with an incorrect grade:</p>
+        <ul>
+            <li><strong>Commodity:</strong> Basmati Rice, <strong>Grade:</strong> B</li>
+            <li><strong>Commodity:</strong> Cotton, <strong>Grade:</strong> A</li>
+        </ul>
 
-              Commodity: Coffee Beans, Grade: A
-
-              Commodity: Cotton, Grade: B
-            </span>
-          </span>
-          <span> For Similar Match
-            <span>
-              Commodity: Wheat, Grade: A
-            </span>
-          </span>
-          <span> For No match scenario
-            <span>
-              A correct commodity with an incorrect grade:
-
-                Commodity: Basmati Rice, Grade: B
-
-                Commodity: Cotton, Grade: A
-
-              A commodity not present in the database:
-
-                Commodity: Soybean, Grade: A
-
-                Commod-ity: Maize, Grade: A
-            </span>
-
-          </span>
+        <p className={css(styles.scenarioSubtitle)}>2. A commodity not present in the database:</p>
+        <ul>
+            <li><strong>Commodity:</strong> Soybean, <strong>Grade:</strong> A</li>
+            <li><strong>Commodity:</strong> Maize, <strong>Grade:</strong> A</li>
+        </ul>
       </div>
     </div>
   );
@@ -296,6 +293,19 @@ const styles = StyleSheet.create({
     paddingTop: '4rem',
     fontFamily: "'Inter', sans-serif",
   },
+  note:{
+    backgroundColor: '#fff3cd',
+    borderLeft: '4px solid #ffc107',
+    padding: '15px',
+    borderRadius: '4px',
+    fontStyle: 'italic',
+  },
+  scenarioSubtitle : {
+      fontWeight: 'bold',
+      marginTop: '20px',
+      marginBottom: '10px',
+      color: '#6c757d',
+  }
 })
 
 export default Mandi;
