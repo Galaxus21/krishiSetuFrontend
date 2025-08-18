@@ -1,5 +1,9 @@
 import { css, StyleSheet } from "aphrodite";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useSpeechToText } from "../../hooks/useSpeechRecognition";
+import { AudioOutlined } from "@ant-design/icons";
+import { Input } from "antd";
+import { useTranslation } from "react-i18next";
 
 // --- SVG Icons (to avoid external libraries) ---
 const PlantIcon = () => (
@@ -42,6 +46,16 @@ const QuestionIcon = () => (
 
 // --- Reusable ChatBox Component ---
 const ChatBox = ({ title, icon, placeholder, inputPlaceholder, showUploadButton = false }: {title: string, icon: React.JSX.Element, placeholder:string,inputPlaceholder:string,showUploadButton?: boolean}) => {
+
+  const { t } = useTranslation();
+  
+  const { 
+    transcript,
+    listening, 
+    startListening, 
+    stopListening, 
+  } = useSpeechToText();
+
   const [message, setMessage] = useState('');
 
   const handleSend = () => {
@@ -54,6 +68,23 @@ const ChatBox = ({ title, icon, placeholder, inputPlaceholder, showUploadButton 
     console.log(`Upload button clicked in "${title}"`);
   };
 
+  const [inputText, setInputText] = useState("");
+
+  const handleVoiceInputToggle = () => {
+    if (listening) {
+      stopListening();
+    } else {
+      startListening();
+    }
+  };
+
+  useEffect(() => {
+    if (transcript) {
+      console.log(`Transcript: ${transcript}`);
+      setInputText(transcript);
+    }
+  }, [transcript]);
+
   return (
     <div className={css(styles.chatBox)}>
       <div className={css(styles.chatBoxHeader)}>
@@ -65,18 +96,26 @@ const ChatBox = ({ title, icon, placeholder, inputPlaceholder, showUploadButton 
       </div>
       <div className={css(styles.chatBoxInputArea)}>
         {showUploadButton && (
-          <button onClick={handleUpload} style={{...styles.button, ...styles.uploadButton}}>
+          <button onClick={handleUpload} className={css(styles.button, styles.uploadButton)}>
             Upload
           </button>
         )}
-        <input
-          type="text"
-          value={message}
-          onChange={(e) => setMessage(e.target.value)}
-          placeholder={inputPlaceholder}
-          style={styles.chatInput}
-          onKeyPress={(e) => e.key === 'Enter' && handleSend()}
-        />
+        <div style={{border: '0px solid black', }}>
+          <Input 
+            placeholder={inputPlaceholder}
+            className={css(styles.input)}
+            value={inputText}
+            onChange={(e) => setInputText(e.target.value)}
+            suffix={<AudioOutlined
+              onClick={handleVoiceInputToggle}
+              spin={listening}
+              style={{
+                fontSize: 16,
+                color: '#1677ff',
+              }}
+            />}
+          />
+        </div>
         <button onClick={handleSend} style={{...styles.button, ...styles.sendButton}}>
           Send
         </button>
@@ -85,40 +124,43 @@ const ChatBox = ({ title, icon, placeholder, inputPlaceholder, showUploadButton 
   );
 };
 
-// --- Main App Component ---
-export default function ChatBoxes() {
-  
-  return (
-    
-      <main>
-        <ChatBox
+export function CropRecommender(){
+  return <ChatBox
           title="Crop Recommender"
           icon={<PlantIcon />}
           placeholder="Welcome! Describe your soil, climate, and location to get a crop recommendation."
           inputPlaceholder="e.g., Black soil, 28°C, low rainfall..."
         />
-        <ChatBox
+}
+
+export function DiseaseDetector(){
+  return <ChatBox
           title="Disease Detector"
           icon={<BugIcon />}
           placeholder="Upload a photo of the affected plant or describe its symptoms."
           inputPlaceholder="Type symptoms here..."
           showUploadButton={true}
         />
-        <ChatBox
+}
+
+export function GovtSchemeAdvisor() {
+  return <ChatBox
           title="Govt. Scheme Advisor"
           icon={<GovernmentIcon />}
           placeholder="Ask me about financial aid, subsidies, or any government scheme for farmers."
           inputPlaceholder="e.g., PM-KISAN eligibility"
         />
-        <ChatBox
+}
+
+export function GeneralQuery() {
+  return <ChatBox
           title="Ask Me Anything"
           icon={<QuestionIcon />}
           placeholder="Have other questions about weather, market prices, or farming techniques? Ask here!"
           inputPlaceholder="Type your question..."
         />
-      </main>
-  );
 }
+
 
 // --- Inline Styles Object ---
 // Converted from Aphrodite to a standard JS object for compatibility.
@@ -195,6 +237,11 @@ const styles = StyleSheet.create({
     padding: '0.5rem 0.75rem',
     fontSize: '1rem',
     outline: 'none',
+  },
+  input: {
+    width: '100%',
+    height: '3rem',
+    border: 'none',
   },
   button: {
     padding: '0.5rem 1rem',
