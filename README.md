@@ -1,69 +1,111 @@
-# React + TypeScript + Vite
+KrishiSetu 🌾 - Your Autonomous Farming Agent
+KrishiSetu is a modern, AI-powered web application that provides Indian farmers with an autonomous sales agent to navigate complex agricultural markets. By automating the entire sales process—from finding buyers to optimizing prices—KrishiSetu acts as a digital bridge (Setu) that empowers farmers to maximize their profitability with minimal effort.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Designed for India's rich linguistic diversity, the platform features a multilingual, voice-first interface, ensuring that every farmer can access its powerful tools in their native language. While the platform also includes a powerful AI assistant for crop advice and disease detection, its core innovation is the proactive, 24/7 agent that works tirelessly on the farmer's behalf.
 
-Currently, two official plugins are available:
+✨ Features
+The application is built around a powerful, autonomous agent, supported by a suite of AI-driven advisory tools.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+📈 Proactive Sales Agent (Mandi) - Core Feature
+This is the heart of KrishiSetu. The autonomous agent is designed to take over the complex and time-consuming task of selling produce, allowing farmers to focus on farming.
 
-## Expanding the ESLint configuration
+Autonomous Opportunity Discovery: The agent continuously scans B2B marketplaces for relevant buyer requests (RFQs) that match the farmer's specific commodity and quality grade.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+Intelligent Price Optimization: It doesn't just find buyers; it finds the best deal. The agent analyzes real-time market data, buyer ratings, and order urgency to calculate a "smart price" designed to maximize the farmer's profit.
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+Automated Quote Submission: Speed is critical in a competitive market. The agent instantly responds to new opportunities by submitting a professionally crafted quote on the farmer's behalf, ensuring they are always first in line.
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+24/7 Monitoring: The agent never sleeps. It works around the clock to find opportunities and will immediately alert the farmer via the app when a buyer responds or a deal is secured.
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+🤖 AI Assistant (Supporting Features)
+To support the farmer's core operations, the platform also includes a multi-functional chat interface designed for inclusivity.
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Multilingual Voice-First Advisory: Overcoming literacy and digital barriers, farmers can ask questions and receive advice simply by speaking to their phone in their native language.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+General Advice: Get instant answers to farming-related questions, from weather patterns to market prices, in multiple Indian languages.
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+Disease Detector: Upload an image of a plant and describe the issue in your local dialect to get a quick AI-powered diagnosis and recommended actions.
+
+🛠️ Tech Stack
+This project is built with a modern, scalable, and efficient technology stack, with a strong emphasis on agentic AI frameworks and multilingual capabilities.
+
+Frontend
+Framework: React
+
+Build Tool: Vite
+
+Language: TypeScript
+
+State Management: Redux
+
+Internationalization: i18next
+
+UI Library: Ant Design
+
+Styling: Aphrodite
+
+API Communication: Axios
+
+Backend
+Framework: FastAPI
+
+Agent Framework: LangChain (for the core proactive sales agent)
+
+AI/ML: Google Gemini, Dhenu 2, Natural Language Processing (NLP), Speech-to-Text/Text-to-Speech
+
+Deployment: Google Cloud Run
+
+🚀 Getting Started
+Follow these instructions to get a copy of the project up and running on your local machine.
+
+Prerequisites
+Node.js (version 18.x or higher recommended)
+
+npm or yarn
+
+Installation
+Clone the repository:
+
+git clone https://github.com/your-username/krishiSetuFrontend.git
+cd krishiSetuFrontend
+
+
+Install dependencies:
+
+npm install
+
+
+Environment Variables
+To connect the frontend to the backend, you need to create an environment file.
+
+Create a file named .env in the root of your project.
+
+Add the following line, replacing the URL with your deployed backend's URL:
+
+VITE_BACKEND_API_URL="https://krishisetu2-961717481370.asia-south2.run.app"
+
+
+Running the Development Server
+Start the Vite development server. The application will be available at http://localhost:5173.
+If it's running on a different port then you might get 'CORS' error.
+
+npm run dev
+
+
+☁️ Deployment
+This application is configured for easy deployment using Firebase Hosting.
+
+Build the application:
+
+npm run build
+
+
+This command creates an optimized production build in the dist folder.
+
+Deploy to Firebase:
+
+firebase deploy
+
+
+🔗 Backend Repository
+The backend for this project is a separate FastAPI application. You can find its repository here: KrishiSetu Backend Repository (replace with your actual backend repo URL).
