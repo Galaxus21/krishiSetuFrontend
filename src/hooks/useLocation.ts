@@ -1,10 +1,12 @@
 import { useEffect } from "react";
 import { setLocation } from "../store/locationSlice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import type { StoreSelector } from "../store/store";
 
 export function useLocation(){
 
   const dispatch = useDispatch();
+  const location = useSelector((store: StoreSelector) => store.location);
 
   function getLocation(){
     if ("geolocation" in navigator) {
@@ -27,5 +29,7 @@ export function useLocation(){
   }
 
   useEffect(getLocation, []);
+
+  return {location}
 
 }
