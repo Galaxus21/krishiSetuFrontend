@@ -17,7 +17,7 @@ const HeroPage = () => {
   return (<RootContainer>
     <div className={css(styles.buttonDiv)}>
       <Button type={`${state==='mandi'?'primary':'default'}`} onClick={()=>setState('mandi')}>{t('mandi')}</Button>
-      <Button type={`${state==='assistant'?'primary':'default'}`} onClick={()=>setState('assistant')}>Farmer's Assistant</Button>
+      <Button type={`${state==='assistant'?'primary':'default'}`} onClick={()=>setState('assistant')}>{t("farmersAssistance")}</Button>
     </div>
     {state==='assistant' ? <AIChatComponent /> : <Mandi />}
   </RootContainer>);
