@@ -4,22 +4,21 @@
   "language": "Language",
 
   "askMeAnything": "Ask me Anything !",
-  "mandi": "Mandi"
-  ,"generalQuery": "General Query"
-  ,"farmersAssistance":"Farmer's Assistance"
-  ,"generalQueryDis0": "Hello! I am your Farming Helper. You can ask any question related to farming. Please write your question with full details so I can help you better. You can ask questions like."
-  ,"generalQueryDis1":"About diseases: Why are there yellow spots on the leaves of my wheat crop?"
+  "mandi": "Mandi",
+  "generalQuery": "General Query",
+  "farmersAssistance":"Farmer's Assistance",
 
- ,"generalQueryDis2":"About fertilizers: Which fertilizer should I use for a good yield in my potato crop?"
+  "generalQueryDis0": "Hello! I am your Farming Helper. You can ask any question related to farming. Please write your question with full details so I can help you better. You can ask questions like.",
+  "generalQueryDis1":"About diseases: Why are there yellow spots on the leaves of my wheat crop?",
+  "generalQueryDis2":"About fertilizers: Which fertilizer should I use for a good yield in my potato crop?",
+  "generalQueryDis3":"About market price: What is the market price of onions in the Mandi today?",
+  "generalQueryDis4":"About weather: Is there a chance of rain in the next 3 days?",
 
-,"generalQueryDis3":"About market price: What is the market price of onions in the Mandi today?"
-
-,"generalQueryDis4":"About weather: Is there a chance of rain in the next 3 days?"
- ,"detectDiseaseDis0":"To find out the disease in your crop, do this:"
-  ,"detectDiseaseDis1":"Step 1: Take a clear photo "
-   ,"detectDiseaseDis2":"Take a clear photo of the diseased part of the plant (leaf, stem, or fruit). Take the photo in sunlight and from up close."
-  ,"detectDiseaseDis3":"Step 2: Write about the problem "
-     ,"detectDiseaseDis4":"What is happening? (Example: The leaves are turning yellow and curling.)"
-      ,"detectDiseaseDis5":"Since when is this happening? (Example: This has been happening for the last one week.)"
-  ,"detectDiseaseDis6":"Have you used any medicine? (Example: I have not used any spray yet.)"
+  "detectDiseaseDis0":"To find out the disease in your crop, do this:",
+  "detectDiseaseDis1":"Step 1: Take a clear photo ",
+  "detectDiseaseDis2":"Take a clear photo of the diseased part of the plant (leaf, stem, or fruit). Take the photo in sunlight and from up close.",
+  "detectDiseaseDis3":"Step 2: Write about the problem ",
+  "detectDiseaseDis4":"What is happening? (Example: The leaves are turning yellow and curling.)",
+  "detectDiseaseDis5":"Since when is this happening? (Example: This has been happening for the last one week.)",
+  "detectDiseaseDis6":"Have you used any medicine? (Example: I have not used any spray yet.)"
 }

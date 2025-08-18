@@ -33,7 +33,13 @@ const GeneralAdviceChatBox = ({ title, icon, inputPlaceholder }:{title:string, i
   const {t} = useTranslation();
   const { transcript, listening, startListening, stopListening, resetTranscript } = useSpeechToText();
   const [inputText, setInputText] = useState("");
-  const [messages, setMessages] = useState([{ sender: 'assistant', text: t("generalQueryDis0")+t("generalQueryDis1")+t("generalQueryDis2")+t("generalQueryDis3")+t("generalQueryDis4") }]);
+  const [messages, setMessages] = useState([{ sender: 'assistant', text: [
+    t("generalQueryDis0"),
+    t("generalQueryDis1"),
+    t("generalQueryDis2"),
+    t("generalQueryDis3"),
+    t("generalQueryDis4")
+  ].join('<br />')  }]);
   const [isLoading, setIsLoading] = useState(false);
   const { location: geo } = useLocation();
 
@@ -108,7 +114,7 @@ const DiseaseDetectorChatBox = ({ title, icon, inputPlaceholder }: {title:string
     const {t} = useTranslation();
     const { transcript, listening, startListening, stopListening, resetTranscript } = useSpeechToText();
     const [inputText, setInputText] = useState("");
-    const [messages, setMessages] = useState([{ sender: 'assistant', text: t("detectDiseaseDis0")+t("detectDiseaseDis1")+t("detectDiseaseDis2")+t("detectDiseaseDis3")+t("detectDiseaseDis4")+t("detectDiseaseDis5")+t("detectDiseaseDis6") }]);
+    const [messages, setMessages] = useState([{ sender: 'assistant', text: [t("detectDiseaseDis0"),t("detectDiseaseDis1"),t("detectDiseaseDis2"),t("detectDiseaseDis3"),t("detectDiseaseDis4"),t("detectDiseaseDis5"),t("detectDiseaseDis6")].join('<br />') }]);
     const [isLoading, setIsLoading] = useState(false);
     const [selectedFile, setSelectedFile] = useState<File | null>(null);
     const fileInputRef = useRef<HTMLInputElement>(null);
