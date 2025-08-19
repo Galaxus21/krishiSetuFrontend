@@ -1,8 +1,16 @@
+import { ConfigProvider } from "antd"
 import { css, StyleSheet } from "aphrodite"
 
 export default function RootContainer({children}: {children: React.ReactNode}) {
   return <div className={css(styles.rootContainer)}>
-    {children}
+    <ConfigProvider theme={{
+            token:{
+                colorPrimary: '#4e7b28ff',
+                colorBgContainer: '#eeeeee',
+            }
+    }}>
+        {children}
+    </ConfigProvider>
   </div>
 }
 

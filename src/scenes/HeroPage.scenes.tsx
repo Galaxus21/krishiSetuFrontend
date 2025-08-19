@@ -49,55 +49,64 @@ const HeroPage = () => {
 
 const styles = StyleSheet.create({
   mainHeading: {
-    color: '#0d141c',
-    letterSpacing: '0.025em',
-    fontSize: '28px',
-    fontWeight: 700,
-    lineHeight: 1.25,
-    padding: '1.25rem 1rem 0.75rem',
+    color: '#1a472a', 
+    letterSpacing: '0.01em',
+    fontSize: '3rem', 
+    fontWeight: 800,
+    lineHeight: 1.2,
+    padding: '1rem',
     textAlign: 'center',
-    margin: 0,
-  },
-  paragraph: {
-    color: '#0d141c',
-    fontSize: '1rem',
-    fontWeight: 400,
-    lineHeight: 1.5,
-    padding: '0.25rem 1rem 0.75rem',
-    textAlign: 'center',
-  },
-  buttonContainer: {
-    display: 'flex',
-    padding: '0.75rem 1rem',
-    justifyContent: 'center',
-  },
-  demoButton: {
-    display: 'flex',
-    minWidth: '84px',
-    maxWidth: '480px',
-    cursor: 'pointer',
-    alignItems: 'center',
-    justifyContent: 'center',
-    overflow: 'hidden',
-    borderRadius: '0.5rem',
-    height: '3rem',
-    padding: '0 1.25rem',
-    backgroundColor: '#0d80f2',
-    color: '#f8fafc',
-    fontSize: '1rem',
-    fontWeight: 700,
-    lineHeight: 1.5,
-    letterSpacing: '0.015em',
-    border: 'none',
-    ':hover': {
-        opacity: 0.9
+    margin: '0 0 1rem 0',
+    '@media (max-width: 768px)': {
+      fontSize: '2.25rem',
     }
   },
+
+  paragraph: {
+    color: '#4a5568', 
+    fontSize: '1.125rem',
+    fontWeight: 400,
+    lineHeight: 1.6,
+    padding: '0 1rem 1.5rem',
+    textAlign: 'center',
+    maxWidth: '600px', 
+    margin: '0 auto',
+  },
+
+  buttonContainer: {
+    display: 'flex',
+    padding: '1rem',
+    justifyContent: 'center',
+  },
+
+  demoButton: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: '50px', 
+    height: '3.5rem',
+    padding: '0 2.5rem',
+    background: 'linear-gradient(90deg, #4CAF50 0%, #81C784 100%)', 
+    color: '#ffffff',
+    fontSize: '1.1rem',
+    fontWeight: 700,
+    letterSpacing: '0.05em',
+    border: 'none',
+    boxShadow: '0 4px 15px rgba(0, 0, 0, 0.2)',
+    transition: 'all 0.3s ease', 
+    
+    ':hover': {
+      transform: 'translateY(-3px)', 
+      boxShadow: '0 6px 20px rgba(0, 0, 0, 0.3)',
+    }
+  },
+
   buttonText: {
     overflow: 'hidden',
     textOverflow: 'ellipsis',
     whiteSpace: 'nowrap',
   },
+
   buttonDiv: {
     display:'flex',
     justifyContent:'space-around',
