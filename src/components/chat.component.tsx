@@ -7,7 +7,7 @@ import { useState } from "react";
 import { useLocation } from "../hooks/useLocation";
 import type { MenuProps } from "antd";
 import AssistantMenu from "./chatSubComponents/assistantMenu.component";
-import { DiseaseDetector, GeneralAdvice } from "./chatSubComponents/assistants.component";
+import { DiseaseDetector, FinancialAdvisor, GeneralAdvice } from "./chatSubComponents/assistants.component";
 
 
 const AIChatComponent = () => {
@@ -17,6 +17,7 @@ const AIChatComponent = () => {
   
   const items = [
     { key: 'generalAdvice', label: 'General Advice' },
+    { key: 'financialAdvisor', label: 'Financial Advice'},
     { key: 'diseaseDetector', label: 'Detect Disease' },
   ] as const;
 
@@ -35,6 +36,8 @@ const AIChatComponent = () => {
         return <GeneralAdvice />
       case 'diseaseDetector':
         return <DiseaseDetector />
+      case 'financialAdvisor':
+        return <FinancialAdvisor />
     }
   }
 

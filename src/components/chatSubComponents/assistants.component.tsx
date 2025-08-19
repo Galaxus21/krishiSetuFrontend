@@ -29,6 +29,16 @@ const QuestionIcon = () => (
   </svg>
 );
 
+const FinanceIcon = () => (
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+        <path d="M2 17l10 5 10-5"></path>
+        <path d="M2 12l10 5 10-5"></path>
+        <line x1="8" y1="14" x2="16" y2="14"></line>
+        <line x1="12" y1="12" x2="12" y2="16"></line>
+    </svg>
+);
+
 
 // --- Component for Advisory-based Chat (General Query) ---
 const GeneralAdviceChatBox = ({ title, icon, inputPlaceholder }:{title:string, icon: React.JSX.Element, inputPlaceholder:string}) => {
@@ -199,6 +209,75 @@ const DiseaseDetectorChatBox = ({ title, icon, inputPlaceholder }: {title:string
 };
 
 
+// --- React Component for Financial Advisor ChatBox ---
+export const FinancialAdvisor = () => {
+  const { transcript, listening, startListening, stopListening, resetTranscript } = useSpeechToText();
+  const [inputText, setInputText] = useState("");
+  const [messages, setMessages] = useState([{ sender: 'assistant', text: "Welcome! What is your financial goal? For example, 'I need a loan to buy a new tractor.'" }]);
+  const [isLoading, setIsLoading] = useState(false);
+  const { location: geo } = useLocation();
+
+  const advisorService = Assistant.getInstance();
+
+  const handleSend = async () => {
+    if (!inputText || isLoading) return;
+
+    const userMessage = { sender: 'user', text: inputText };
+    setMessages(prev => [...prev, userMessage]);
+    setInputText("");
+    resetTranscript();
+    setIsLoading(true);
+
+    try {
+      // Call the new service with the user's goal and location
+      const responseText = await advisorService.getFinancialAdvisory(inputText, geo.latitude, geo.longitude);
+      const assistantMessage = { sender: 'assistant', text: responseText };
+      setMessages(prev => [...prev, assistantMessage]);
+    } catch (error: any) {
+      const errorMessage = { sender: 'assistant', text: error.message || "Sorry, an unknown error occurred." };
+      setMessages(prev => [...prev, errorMessage]);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+  
+  useEffect(() => {
+    if (transcript) setInputText(transcript);
+  }, [transcript]);
+
+  const messageContainerRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    if (messageContainerRef.current) {
+      messageContainerRef.current.scrollTop = messageContainerRef.current.scrollHeight;
+    }
+  }, [messages]);
+
+  return (
+    <div className={css(styles.chatBox)}>
+        <ChatHeader title="Financial Advisor" icon={<FinanceIcon />} />
+        <div ref={messageContainerRef} className={css(styles.chatBoxMessages)}>
+            {messages.map((msg, index) => (
+                <MessageBubble key={index} sender={msg.sender} text={msg.text} />
+            ))}
+            {isLoading && <div className={css(styles.loadingIndicator)}>Consulting financial records...</div>}
+        </div>
+        <ChatInput
+            inputText={inputText}
+            setInputText={setInputText}
+            handleSend={handleSend}
+            isLoading={isLoading}
+            listening={listening}
+            startListening={startListening}
+            stopListening={stopListening}
+            resetTranscript={resetTranscript}
+            inputPlaceholder="e.g., I need a 5 lakh loan..."
+        />
+    </div>
+  );
+};
+
+
+
 // --- Helper Sub-components for UI ---
 const ChatHeader = ({ title, icon }: {title:string, icon: React.JSX.Element}) => (
     <div className={css(styles.chatBoxHeader)}>
@@ -253,7 +332,7 @@ const ChatInput = ({ inputText, setInputText, handleSend, isLoading, listening, 
 
 // --- Final Exported Components ---
 export const DiseaseDetector = () => <DiseaseDetectorChatBox title="Disease Detector" icon={<BugIcon />} inputPlaceholder="Type symptoms here..." />;
-export const GeneralAdvice = () => <GeneralAdviceChatBox title="General Advice" icon={<QuestionIcon />} inputPlaceholder="Type your crop name..." />;
+export const GeneralAdvice = () => <GeneralAdviceChatBox title="General Advisor" icon={<QuestionIcon />} inputPlaceholder="Type your crop name..." />;
 
 
 // --- Inline Styles ---

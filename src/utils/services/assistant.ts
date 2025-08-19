@@ -10,6 +10,17 @@ export interface LocationData {
   language: string;
 }
 
+export interface FinancialQuery {
+  goal: string;
+  latitude: number;
+  longitude: number;
+}
+
+// Interface for the expected API response
+export interface FinancialAdvisoryResponse {
+  advisory: string;
+}
+
 // Defines the expected structure for a successful advisory response
 export interface AdvisoryResponse {
   advisory_report: string;
@@ -25,18 +36,22 @@ export interface DiseaseAnalysisResponse {
 
 // --- Updated Assistant Service ---
 // This class is now configured to work with your live backend endpoints.
+
 export class Assistant {
   private static instance: Assistant;
   private api: AxiosInstance;
+  private financeApi: AxiosInstance;
 
   private constructor() {
     // The baseURL is set to your live Google Cloud Run URL.
     const baseURL = import.meta.env.VITE_BACKEND_API_KEY;
+    const baseURLFinance = import.meta.env.VITE_BACKEND_FINANCE_API_KEY;
     
-    if (!baseURL) {
-      throw new Error("The API URL is missing.");
+    if (!baseURL && !baseURLFinance) {
+      throw new Error("API URL is missing.");
     }
     this.api = axios.create({ baseURL });
+    this.financeApi = axios.create({ baseURL: baseURLFinance })
   }
 
   public static getInstance(): Assistant {
@@ -52,6 +67,7 @@ export class Assistant {
    * @param location - The location data including coordinates, crop, and language.
    * @returns A promise that resolves with the advisory report.
    */
+
   public async getAdvisory(location: LocationData): Promise<AdvisoryResponse> {
     try {
       // Calls the /general_advisory/ endpoint with the location data.
@@ -71,6 +87,7 @@ export class Assistant {
    * @param context - The user's text query or context about the issue.
    * @returns A promise that resolves with the disease analysis.
    */
+
   public async identifyDisease(image: File, plantName: string, context: string): Promise<DiseaseAnalysisResponse> {
     // The /detect/ endpoint expects 'multipart/form-data', so we use the FormData API.
     const formData = new FormData();
@@ -88,6 +105,25 @@ export class Assistant {
     } catch (error) {
       console.error("Error during disease detection:", error);
       throw new Error("Failed to analyze the plant image.");
+    }
+  }
+
+  public async getFinancialAdvisory(query: string, latitude: number, longitude: number): Promise<string> {
+    const payload: FinancialQuery = {
+      goal: query,
+      latitude,
+      longitude,
+    }
+    try {
+      const response = await this.financeApi.post<FinancialAdvisoryResponse>('/financial_advisory', payload);
+      return response.data.advisory;
+    } catch (error) {
+      console.error("Error fetching financial advisory:", error);
+      if (axios.isAxiosError(error) && error.response) {
+        // Return the detailed error message from the FastAPI backend if available
+        return `Error from server: ${error.response.data.detail || "An unknown error occurred."}`;
+      }
+      throw new Error("Failed to get a response from the financial advisor.");
     }
   }
 }
