@@ -28,6 +28,8 @@ const QuestionIcon = () => (
     <line x1="12" y1="17" x2="12.01" y2="17"></line>
   </svg>
 );
+
+
 // --- Component for Advisory-based Chat (General Query) ---
 const GeneralAdviceChatBox = ({ title, icon, inputPlaceholder }:{title:string, icon: React.JSX.Element, inputPlaceholder:string}) => {
   const {t} = useTranslation();
@@ -36,9 +38,7 @@ const GeneralAdviceChatBox = ({ title, icon, inputPlaceholder }:{title:string, i
   const [messages, setMessages] = useState([{ sender: 'assistant', text: [
     t("generalQueryDis0"),
     t("generalQueryDis1"),
-    t("generalQueryDis2"),
-    t("generalQueryDis3"),
-    t("generalQueryDis4")
+    t("generalQueryDis2")
   ].join('<br />')  }]);
   const [isLoading, setIsLoading] = useState(false);
   const { location: geo } = useLocation();
@@ -57,7 +57,7 @@ const GeneralAdviceChatBox = ({ title, icon, inputPlaceholder }:{title:string, i
     const locationData: LocationData = {
         latitude: geo.latitude,
         longitude: geo.longitude,
-        crop: "Wheat",
+        crop: inputText,
         language: "English",
     };
 
@@ -253,7 +253,7 @@ const ChatInput = ({ inputText, setInputText, handleSend, isLoading, listening, 
 
 // --- Final Exported Components ---
 export const DiseaseDetector = () => <DiseaseDetectorChatBox title="Disease Detector" icon={<BugIcon />} inputPlaceholder="Type symptoms here..." />;
-export const GeneralAdvice = () => <GeneralAdviceChatBox title="Ask Me Anything" icon={<QuestionIcon />} inputPlaceholder="Type your question..." />;
+export const GeneralAdvice = () => <GeneralAdviceChatBox title="General Advice" icon={<QuestionIcon />} inputPlaceholder="Type your crop name..." />;
 
 
 // --- Inline Styles ---

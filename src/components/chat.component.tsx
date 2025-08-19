@@ -16,13 +16,13 @@ const AIChatComponent = () => {
   useLocation();
   
   const items = [
-    { key: 'generalQuery', label: 'General Query' },
+    { key: 'generalAdvice', label: 'General Advice' },
     { key: 'diseaseDetector', label: 'Detect Disease' },
   ] as const;
 
   type MenuStates = typeof items[number]['key']
 
-  const [menuState, setMenuState] = useState<MenuStates>('generalQuery')
+  const [menuState, setMenuState] = useState<MenuStates>('generalAdvice')
 
 
   const handleMenuChange:  MenuProps['onClick'] = (e) => {
@@ -31,7 +31,7 @@ const AIChatComponent = () => {
 
   function menuComponent() {
     switch(menuState) {
-      case 'generalQuery':
+      case 'generalAdvice':
         return <GeneralAdvice />
       case 'diseaseDetector':
         return <DiseaseDetector />

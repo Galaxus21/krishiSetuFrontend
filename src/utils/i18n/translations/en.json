@@ -8,11 +8,9 @@
   "generalQuery": "General Query",
   "farmersAssistance":"Farmer's Assistance",
 
-  "generalQueryDis0": "Hello! I am your Farming Helper. You can ask any question related to farming. Please write your question with full details so I can help you better. You can ask questions like.",
-  "generalQueryDis1":"About diseases: Why are there yellow spots on the leaves of my wheat crop?",
-  "generalQueryDis2":"About fertilizers: Which fertilizer should I use for a good yield in my potato crop?",
-  "generalQueryDis3":"About market price: What is the market price of onions in the Mandi today?",
-  "generalQueryDis4":"About weather: Is there a chance of rain in the next 3 days?",
+  "generalQueryDis0": "Hello! I am your Farming Helper. You can get advice about any crop.",
+  "generalQueryDis1":"I will give you a one week caretaking roadmap for the crop.",
+  "generalQueryDis2":"It will be based on your location, weather, soil moisture and quality.",
 
   "detectDiseaseDis0":"To find out the disease in your crop, do this:",
   "detectDiseaseDis1":"Step 1: Take a clear photo ",
