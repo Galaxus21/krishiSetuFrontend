@@ -1,4 +1,4 @@
-KrishiSetu 🌾 - Your Autonomous Farming Agent
+KrishiSetu 🌾 - Your Autonomous One Stop Sales Agent
 KrishiSetu is a modern, AI-powered web application that provides Indian farmers with an autonomous sales agent to navigate complex agricultural markets. By automating the entire sales process—from finding buyers to optimizing prices—KrishiSetu acts as a digital bridge (Setu) that empowers farmers to maximize their profitability with minimal effort.
 
 Designed for India's rich linguistic diversity, the platform features a multilingual, voice-first interface, ensuring that every farmer can access its powerful tools in their native language. While the platform also includes a powerful AI assistant for crop advice and disease detection, its core innovation is the proactive, 24/7 agent that works tirelessly on the farmer's behalf.
@@ -25,6 +25,8 @@ Multilingual Voice-First Advisory: Overcoming literacy and digital barriers, far
 General Advice: Get instant answers to farming-related questions, from weather patterns to market prices, in multiple Indian languages.
 
 Disease Detector: Upload an image of a plant and describe the issue in your local dialect to get a quick AI-powered diagnosis and recommended actions.
+
+Financial Advisor: Get data-driven financial advice. This RAG-based agent uses a knowledge base of financial schemes to provide detailed proposals for goals like securing a tractor loan, tailored to the farmer's specific state.
 
 🛠️ Tech Stack
 This project is built with a modern, scalable, and efficient technology stack, with a strong emphasis on agentic AI frameworks and multilingual capabilities.
@@ -69,43 +71,59 @@ Clone the repository:
 git clone https://github.com/your-username/krishiSetuFrontend.git
 cd krishiSetuFrontend
 
-
 Install dependencies:
 
 npm install
 
-
 Environment Variables
-To connect the frontend to the backend, you need to create an environment file.
+To connect the frontend to your backend services, you need to create an environment file.
 
-Create a file named .env in the root of your project.
+In the root of your project, create a file named .env.
 
-Add the following line, replacing the URL with your deployed backend's URL:
+Add your backend API URLs to this file. Vite requires environment variables exposed to the browser to be prefixed with VITE_.
 
-VITE_BACKEND_API_URL="https://krishisetu2-961717481370.asia-south2.run.app"
-
+VITE_BACKEND_API_KEY="https://krishisetu2-961717481370.asia-south2.run.app"
+VITE_BACKEND_FINANCE_API_KEY="https://krishisetufinadvisor-961717481370.asia-south2.run.app"
 
 Running the Development Server
-Start the Vite development server. The application will be available at http://localhost:5173.
-If it's running on a different port then you might get 'CORS' error.
+Start the Vite development server. By default, the application will be available at http://localhost:5173.
 
 npm run dev
 
+Note on CORS: For the local development server to communicate with your backend, ensure the backend's CORS configuration allows your localhost URL (e.g., "http://localhost:5173").
 
 ☁️ Deployment
 This application is configured for easy deployment using Firebase Hosting.
 
-Build the application:
+Prerequisites
+You must have the Firebase CLI installed: npm install -g firebase-tools
+
+You must be logged in to Firebase: firebase login
+
+Deployment Steps
+Initialize Firebase (if you haven't already):
+
+firebase init hosting
+
+When prompted for the public directory, enter dist.
+
+When asked to configure as a single-page app, answer Yes.
+
+Build the application for production:
 
 npm run build
 
-
 This command creates an optimized production build in the dist folder.
 
-Deploy to Firebase:
+Deploy to Firebase Hosting:
 
 firebase deploy
 
+After deployment, the CLI will provide you with the live URL for your project.
 
 🔗 Backend Repository
-The backend for this project is a separate FastAPI application. You can find its repository here: KrishiSetu Backend Repository (replace with your actual backend repo URL).
+The backend for this project consists of separate FastAPI applications. You can find the repositories here:
+
+Main Service: KrishiSetu Backend Repo (replace URL)
+
+Financial Advisor: KrishiSetu Finance Backend Repo (replace URL)
